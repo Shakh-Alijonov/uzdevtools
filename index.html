@@ -4,224 +4,502 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UzDevTools</title>
+<meta name="theme-color" content="#080c14">
+<meta name="description" content="Free online tools for developers and everyone.">
+<title>UzDevTools — Free Online Tools</title>
+
 <style>
+:root{
+  --bg:#080c14;
+  --panel:#101725;
+  --panel2:#151e2e;
+  --border:#263247;
+  --text:#f1f5f9;
+  --muted:#94a3b8;
+  --blue:#60a5fa;
+  --cyan:#22d3ee;
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:Inter,Arial,sans-serif;background:#0b1020;color:#e5e7eb}
-header{padding:25px 8%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #20293c}
-.logo{font-size:25px;font-weight:800;color:#fff}
-.logo span{color:#38bdf8}
-header a{color:#9ca3af;text-decoration:none}
-.hero{text-align:center;padding:70px 20px 40px}
-.hero h1{font-size:48px;margin:0 0 15px}
-.hero h1 span{color:#38bdf8}
-.hero p{color:#9ca3af;font-size:17px}
-.search{max-width:600px;margin:30px auto}
-.search input{width:100%;padding:16px;background:#141c2f;border:1px solid #273449;border-radius:12px;color:white;font-size:16px;outline:none}
-.container{max-width:1150px;margin:auto;padding:20px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-.card{background:#121a2b;border:1px solid #253148;border-radius:16px;padding:22px;transition:.2s}
-.card:hover{transform:translateY(-4px);border-color:#38bdf8}
-.card h3{margin-top:0}
-.card p{color:#9ca3af;font-size:14px}
-textarea,input[type=text],input[type=number],input[type=password]{width:100%;padding:12px;background:#0b1020;color:white;border:1px solid #29364d;border-radius:10px;margin:8px 0}
-textarea{min-height:110px;resize:vertical}
-button{padding:11px 15px;background:#38bdf8;color:#08111e;border:none;border-radius:10px;font-weight:700;cursor:pointer;margin-top:5px}
-button:hover{opacity:.85}
-.result{color:#38bdf8;word-break:break-word;margin-top:10px}
-footer{text-align:center;padding:40px;color:#64748b}
-.badge{display:inline-block;background:#16253b;color:#38bdf8;padding:6px 10px;border-radius:30px;font-size:12px}
-.hidden{display:none}
+html{scroll-behavior:smooth}
+body{
+ margin:0;
+ font-family:Inter,Segoe UI,Arial,sans-serif;
+ background:
+ radial-gradient(ellipse at 50% -20%,#16345c 0%,transparent 45%),
+ var(--bg);
+ color:var(--text);
+ min-height:100vh
+}
+button,input,textarea{font:inherit}
+header{
+ max-width:1250px;
+ margin:auto;
+ padding:24px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between
+}
+.logo{
+ font-size:25px;
+ font-weight:800;
+ letter-spacing:-1px
+}
+.logo span{color:var(--cyan)}
+.nav{
+ display:flex;
+ align-items:center;
+ gap:20px
+}
+.nav a{
+ color:var(--muted);
+ text-decoration:none;
+ transition:.2s
+}
+.nav a:hover{color:white}
+.github{
+ padding:10px 16px;
+ border:1px solid var(--border);
+ border-radius:10px;
+ background:#111827
+}
+.hero{
+ padding:90px 20px 55px;
+ text-align:center
+}
+.pill{
+ display:inline-flex;
+ gap:8px;
+ align-items:center;
+ padding:8px 14px;
+ border:1px solid #284363;
+ border-radius:50px;
+ background:#102238;
+ color:#93c5fd;
+ font-size:13px
+}
+.dot{
+ width:7px;height:7px;
+ background:#34d399;
+ border-radius:50%
+}
+.hero h1{
+ font-size:clamp(40px,7vw,75px);
+ line-height:1.08;
+ letter-spacing:-3px;
+ margin:24px 0
+}
+.gradient{
+ background:linear-gradient(90deg,#60a5fa,#22d3ee,#a78bfa);
+ -webkit-background-clip:text;
+ background-clip:text;
+ color:transparent
+}
+.hero p{
+ color:var(--muted);
+ font-size:18px;
+ max-width:600px;
+ margin:0 auto;
+ line-height:1.7
+}
+.searchwrap{
+ max-width:650px;
+ margin:35px auto 0;
+ position:relative
+}
+.searchwrap input{
+ width:100%;
+ padding:18px 20px 18px 48px;
+ background:rgba(16,23,37,.9);
+ border:1px solid var(--border);
+ border-radius:15px;
+ color:white;
+ outline:none;
+ font-size:16px;
+ transition:.2s
+}
+.searchwrap input:focus{
+ border-color:#60a5fa;
+ box-shadow:0 0 0 4px rgba(96,165,250,.12)
+}
+.searchicon{
+ position:absolute;
+ left:18px;
+ top:17px;
+ color:#64748b
+}
+.content{
+ max-width:1250px;
+ margin:auto;
+ padding:15px 24px 80px
+}
+.sectiontop{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin:25px 0
+}
+.sectiontop h2{
+ font-size:23px;
+ margin:0
+}
+.sectiontop span{
+ color:var(--muted);
+ font-size:14px
+}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:20px
+}
+.card{
+ background:linear-gradient(160deg,#131d2c,#0e1522);
+ border:1px solid var(--border);
+ border-radius:18px;
+ padding:24px;
+ transition:transform .25s,border .25s,box-shadow .25s;
+ min-width:0
+}
+.card:hover{
+ transform:translateY(-5px);
+ border-color:#40577a;
+ box-shadow:0 12px 35px rgba(0,0,0,.25)
+}
+.iconbox{
+ width:46px;height:46px;
+ display:grid;
+ place-items:center;
+ border-radius:13px;
+ background:#1b2c43;
+ font-size:23px;
+ margin-bottom:18px
+}
+.card h3{
+ margin:0 0 9px;
+ font-size:18px
+}
+.card p{
+ margin:0 0 20px;
+ color:var(--muted);
+ font-size:14px;
+ line-height:1.6
+}
+textarea,input[type=text],input[type=number]{
+ width:100%;
+ padding:13px;
+ background:#080e19;
+ color:var(--text);
+ border:1px solid #29364b;
+ border-radius:11px;
+ outline:none;
+ margin:0 0 10px
+}
+textarea{
+ min-height:120px;
+ resize:vertical
+}
+textarea:focus,input:focus{
+ border-color:#60a5fa
+}
+button{
+ border:none;
+ border-radius:10px;
+ padding:11px 16px;
+ background:linear-gradient(135deg,#60a5fa,#38bdf8);
+ color:#07111d;
+ font-weight:700;
+ cursor:pointer;
+ transition:.2s
+}
+button:hover{
+ filter:brightness(1.1);
+ transform:translateY(-1px)
+}
+button.secondary{
+ background:#1b2638;
+ color:#dbeafe;
+ border:1px solid #31415a
+}
+.result{
+ margin-top:12px;
+ color:#67e8f9;
+ font-size:14px;
+ line-height:1.6;
+ white-space:pre-wrap;
+ overflow-wrap:anywhere
+}
+.actions{
+ display:flex;
+ flex-wrap:wrap;
+ gap:8px
+}
+.empty{
+ display:none;
+ text-align:center;
+ padding:40px;
+ color:var(--muted)
+}
+footer{
+ border-top:1px solid #1e293b;
+ text-align:center;
+ padding:30px 20px;
+ color:#64748b;
+ font-size:14px
+}
+footer a{color:#93c5fd;text-decoration:none}
+@media(max-width:950px){
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .hero{padding-top:60px}
+}
+@media(max-width:600px){
+ header{padding:18px}
+ .nav{gap:10px}
+ .nav a:not(.github){display:none}
+ .logo{font-size:21px}
+ .hero{padding:65px 18px 35px}
+ .hero h1{letter-spacing:-2px}
+ .hero p{font-size:16px}
+ .content{padding:10px 16px 50px}
+ .grid{grid-template-columns:1fr}
+ .card{padding:20px}
+ .sectiontop{align-items:flex-start;gap:10px}
+}
 </style>
 </head>
+
 <body>
 
 <header>
-<div class="logo">Uz<span>Dev</span>Tools</div>
-<a href="https://github.com/Shakh-Alijonov/uzdevtools">GitHub ↗</a>
+ <div class="logo">Uz<span>Dev</span>Tools</div>
+ <nav class="nav">
+  <a href="#tools">Tools</a>
+  <a href="#about">About</a>
+  <a class="github" href="https://github.com/Shakh-Alijonov/uzdevtools" target="_blank">GitHub ↗</a>
+ </nav>
 </header>
 
 <section class="hero">
-<span class="badge">FREE • OPEN SOURCE</span>
-<h1>Simple tools.<br><span>Zero hassle.</span></h1>
-<p>Useful online tools for developers and everyone.</p>
-<div class="search">
-<input type="text" id="search" placeholder="Search tools..." oninput="searchTools()">
-</div>
+ <div class="pill"><span class="dot"></span> FREE & OPEN SOURCE</div>
+ <h1>Tools that make<br><span class="gradient">life easier.</span></h1>
+ <p>Simple, useful and free online tools for developers, creators and everyone.</p>
+ <div class="searchwrap">
+  <span class="searchicon">⌕</span>
+  <input id="search" type="text" placeholder="Search for a tool..." oninput="searchTools()">
+ </div>
 </section>
 
-<main class="container">
-<div class="grid" id="tools">
+<main class="content" id="tools">
+ <div class="sectiontop">
+  <h2>Explore tools</h2>
+  <span id="toolCount">6 tools</span>
+ </div>
 
-<div class="card" data-name="text counter word character text">
-<h3>📝 Text Counter</h3>
-<p>Count words, characters and spaces.</p>
-<textarea id="textInput" placeholder="Enter your text..." oninput="countText()"></textarea>
-<div class="result" id="textResult">Words: 0 | Characters: 0</div>
-</div>
+ <div class="grid" id="grid">
 
-<div class="card" data-name="json formatter validator developer">
-<h3>💻 JSON Formatter</h3>
-<p>Format and validate JSON data.</p>
-<textarea id="jsonInput" placeholder='{"name":"UzDevTools"}'></textarea>
-<button onclick="formatJSON()">Format JSON</button>
-<div class="result" id="jsonResult"></div>
-</div>
+ <div class="card" data-name="text counter words characters text">
+  <div class="iconbox">📝</div>
+  <h3>Text Counter</h3>
+  <p>Count words, characters and spaces instantly.</p>
+  <textarea id="textInput" placeholder="Type or paste your text..." oninput="countText()"></textarea>
+  <div class="result" id="textResult">Words: 0 · Characters: 0</div>
+ </div>
 
-<div class="card" data-name="password generator security">
-<h3>🔐 Password Generator</h3>
-<p>Generate a secure random password.</p>
-<input type="number" id="passLength" value="16" min="8" max="128">
-<button onclick="generatePassword()">Generate</button>
-<div class="result" id="passResult"></div>
-</div>
+ <div class="card" data-name="json formatter validator developer">
+  <div class="iconbox">⌨️</div>
+  <h3>JSON Formatter</h3>
+  <p>Format and validate JSON data.</p>
+  <textarea id="jsonInput" placeholder='{"name":"UzDevTools"}'></textarea>
+  <div class="actions">
+   <button onclick="formatJSON()">Format JSON</button>
+   <button class="secondary" onclick="copyJSON()">Copy</button>
+  </div>
+  <div class="result" id="jsonResult"></div>
+ </div>
 
-<div class="card" data-name="vat tax calculator uzbekistan">
-<h3>🧮 VAT Calculator</h3>
-<p>Calculate VAT at 12%.</p>
-<input type="number" id="vatAmount" placeholder="Enter amount">
-<button onclick="calculateVAT()">Calculate</button>
-<div class="result" id="vatResult"></div>
-</div>
+ <div class="card" data-name="password generator security random">
+  <div class="iconbox">🔐</div>
+  <h3>Password Generator</h3>
+  <p>Create strong random passwords.</p>
+  <input type="number" id="passLength" min="8" max="128" value="16">
+  <div class="actions">
+   <button onclick="generatePassword()">Generate</button>
+   <button class="secondary" onclick="copyPassword()">Copy</button>
+  </div>
+  <div class="result" id="passResult"></div>
+ </div>
 
-<div class="card" data-name="uzbek latin cyrillic converter">
-<h3>🔤 Uzbek Converter</h3>
-<p>Convert Uzbek Latin to Cyrillic and back.</p>
-<textarea id="uzInput" placeholder="Matnni kiriting..."></textarea>
-<button onclick="toCyrillic()">Latin → Cyrillic</button>
-<button onclick="toLatin()">Cyrillic → Latin</button>
-<div class="result" id="uzResult"></div>
-</div>
+ <div class="card" data-name="vat tax calculator uzbekistan">
+  <div class="iconbox">🧮</div>
+  <h3>VAT Calculator</h3>
+  <p>Calculate VAT using a 12% rate.</p>
+  <input type="number" id="vatAmount" placeholder="Enter amount">
+  <button onclick="calculateVAT()">Calculate</button>
+  <div class="result" id="vatResult"></div>
+ </div>
 
-<div class="card" data-name="phone formatter uzbekistan">
-<h3>📱 Phone Formatter</h3>
-<p>Format Uzbek phone numbers.</p>
-<input type="text" id="phoneInput" placeholder="998901234567">
-<button onclick="formatPhone()">Format</button>
-<div class="result" id="phoneResult"></div>
-</div>
+ <div class="card" data-name="uzbek latin cyrillic converter alphabet">
+  <div class="iconbox">🔤</div>
+  <h3>Uzbek Converter</h3>
+  <p>Convert Uzbek Latin and Cyrillic text.</p>
+  <textarea id="uzInput" placeholder="Enter Uzbek text..."></textarea>
+  <div class="actions">
+   <button onclick="toCyrillic()">Latin → Cyrillic</button>
+   <button class="secondary" onclick="toLatin()">Cyrillic → Latin</button>
+  </div>
+  <div class="result" id="uzResult"></div>
+ </div>
 
-</div>
+ <div class="card" data-name="phone formatter uzbekistan mobile">
+  <div class="iconbox">📱</div>
+  <h3>Phone Formatter</h3>
+  <p>Format Uzbek phone numbers.</p>
+  <input type="text" id="phoneInput" placeholder="998901234567">
+  <button onclick="formatPhone()">Format number</button>
+  <div class="result" id="phoneResult"></div>
+ </div>
+
+ </div>
+ <div class="empty" id="empty">No tools found.</div>
 </main>
 
-<footer>
-<p>UzDevTools • Open source • Made for everyone</p>
-<p>© 2026 UzDevTools</p>
+<footer id="about">
+ <div class="logo">Uz<span>Dev</span>Tools</div>
+ <p>Free tools. Open source. Made for everyone.</p>
+ <p><a href="https://github.com/Shakh-Alijonov/uzdevtools">Contribute on GitHub ↗</a></p>
+ <p>© 2026 UzDevTools</p>
 </footer>
 
 <script>
 function countText(){
-let t=document.getElementById('textInput').value;
-let words=t.trim()?t.trim().split(/\s+/).length:0;
-document.getElementById('textResult').textContent=
-'Words: '+words+' | Characters: '+t.length;
+ let t=document.getElementById('textInput').value;
+ let words=t.trim()?t.trim().split(/\s+/).length:0;
+ document.getElementById('textResult').textContent=
+ 'Words: '+words+' · Characters: '+t.length;
 }
 
 function formatJSON(){
-let input=document.getElementById('jsonInput').value;
-try{
-let formatted=JSON.stringify(JSON.parse(input),null,2);
-document.getElementById('jsonInput').value=formatted;
-document.getElementById('jsonResult').textContent='Valid JSON ✓';
-}catch(e){
-document.getElementById('jsonResult').textContent='Invalid JSON ✗';
+ let input=document.getElementById('jsonInput').value;
+ try{
+  document.getElementById('jsonInput').value=JSON.stringify(JSON.parse(input),null,2);
+  document.getElementById('jsonResult').textContent='Valid JSON ✓';
+ }catch(e){
+  document.getElementById('jsonResult').textContent='Invalid JSON ✗';
+ }
 }
+
+function copyJSON(){
+ navigator.clipboard.writeText(document.getElementById('jsonInput').value);
+ document.getElementById('jsonResult').textContent='Copied!';
 }
 
 function generatePassword(){
-let length=parseInt(document.getElementById('passLength').value);
-if(!length||length<8||length>128){
-document.getElementById('passResult').textContent='Choose 8–128 characters';
-return;
+ let length=parseInt(document.getElementById('passLength').value);
+ if(!length||length<8||length>128){
+  document.getElementById('passResult').textContent='Choose 8–128 characters';
+  return;
+ }
+ let chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=';
+ let arr=new Uint32Array(length);
+ crypto.getRandomValues(arr);
+ let password='';
+ for(let i=0;i<length;i++)password+=chars[arr[i]%chars.length];
+ document.getElementById('passResult').textContent=password;
 }
-let chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=';
-let password='';
-let array=new Uint32Array(length);
-crypto.getRandomValues(array);
-for(let i=0;i<length;i++)password+=chars[array[i]%chars.length];
-document.getElementById('passResult').textContent=password;
+
+function copyPassword(){
+ let p=document.getElementById('passResult').textContent;
+ if(p)navigator.clipboard.writeText(p);
 }
 
 function calculateVAT(){
-let amount=parseFloat(document.getElementById('vatAmount').value);
-if(isNaN(amount)||amount<0){
-document.getElementById('vatResult').textContent='Enter a valid amount';
-return;
-}
-let vat=amount*0.12;
-document.getElementById('vatResult').textContent=
-'VAT: '+vat.toFixed(2)+' | Total: '+(amount+vat).toFixed(2);
+ let amount=parseFloat(document.getElementById('vatAmount').value);
+ if(isNaN(amount)||amount<0){
+  document.getElementById('vatResult').textContent='Enter a valid amount';
+  return;
+ }
+ let vat=amount*0.12;
+ document.getElementById('vatResult').textContent=
+ 'VAT: '+vat.toFixed(2)+' · Total: '+(amount+vat).toFixed(2);
 }
 
-const latinPairs=[
-["o‘","ў"],["o'","ў"],["g‘","ғ"],["g'","ғ"],
-["sh","ш"],["ch","ч"],["ya","я"],["yu","ю"],["yo","ё"],
-["ts","ц"],["a","а"],["b","б"],["d","д"],["e","е"],
-["f","ф"],["g","г"],["h","ҳ"],["i","и"],["j","ж"],
-["k","к"],["l","л"],["m","м"],["n","н"],["o","о"],
-["p","п"],["q","қ"],["r","р"],["s","с"],["t","т"],
-["u","у"],["v","в"],["x","х"],["y","й"],["z","з"]
-];
-
+/* Uzbek Latin to Cyrillic */
 function toCyrillic(){
-let text=document.getElementById('uzInput').value;
-let output='';
-let i=0;
-while(i<text.length){
-let found=false;
-for(let pair of latinPairs){
-let part=text.substring(i,i+pair[0].length);
-if(part.toLowerCase()===pair[0]){
-let converted=pair[1];
-if(part[0]===part[0].toUpperCase())converted=converted.toUpperCase();
-output+=converted;
-i+=pair[0].length;
-found=true;
-break;
-}
-}
-if(!found){output+=text[i];i++;}
-}
-document.getElementById('uzResult').textContent=output;
+ let text=document.getElementById('uzInput').value;
+ let result='';
+ let pairs=[
+  ["O‘","Ў"],["O'","Ў"],["o‘","ў"],["o'","ў"],
+  ["G‘","Ғ"],["G'","Ғ"],["g‘","ғ"],["g'","ғ"],
+  ["Sh","Ш"],["sh","ш"],["CH","Ч"],["Ch","Ч"],["ch","ч"],
+  ["Ya","Я"],["ya","я"],["Yu","Ю"],["yu","ю"],
+  ["Yo","Ё"],["yo","ё"],
+  ["A","А"],["a","а"],["B","Б"],["b","б"],
+  ["D","Д"],["d","д"],["E","Е"],["e","е"],
+  ["F","Ф"],["f","ф"],["G","Г"],["g","г"],
+  ["H","Ҳ"],["h","ҳ"],["I","И"],["i","и"],
+  ["J","Ж"],["j","ж"],["K","К"],["k","к"],
+  ["L","Л"],["l","л"],["M","М"],["m","м"],
+  ["N","Н"],["n","н"],["O","О"],["o","о"],
+  ["P","П"],["p","п"],["Q","Қ"],["q","қ"],
+  ["R","Р"],["r","р"],["S","С"],["s","с"],
+  ["T","Т"],["t","т"],["U","У"],["u","у"],
+  ["V","В"],["v","в"],["X","Х"],["x","х"],
+  ["Y","Й"],["y","й"],["Z","З"],["z","з"]
+ ];
+ for(let i=0;i<text.length;){
+  let found=false;
+  for(let pair of pairs){
+   if(text.slice(i,i+pair[0].length)===pair[0]){
+    result+=pair[1];i+=pair[0].length;found=true;break;
+   }
+  }
+  if(!found){result+=text[i];i++;}
+ }
+ document.getElementById('uzResult').textContent=result;
 }
 
+/* Uzbek Cyrillic to Latin */
 function toLatin(){
-let text=document.getElementById('uzInput').value;
-const map={
-'а':'a','б':'b','д':'d','е':'e','ф':'f','г':'g',
-'ҳ':'h','и':'i','ж':'j','к':'k','л':'l','м':'m',
-'н':'n','о':'o','п':'p','қ':'q','р':'r','с':'s',
-'т':'t','у':'u','в':'v','х':'x','й':'y','з':'z',
-'ш':'sh','ч':'ch','я':'ya','ю':'yu','ё':'yo','ц':'ts',
-'ғ':'g‘','ў':'o‘'
-};
-let output='';
-for(let c of text){
-let lower=c.toLowerCase();
-let converted=map[lower]||c;
-if(c!==lower)converted=converted.charAt(0).toUpperCase()+converted.slice(1);
-output+=converted;
-}
-document.getElementById('uzResult').textContent=output;
+ let text=document.getElementById('uzInput').value;
+ let map={
+ 'а':'a','б':'b','д':'d','е':'e','ф':'f','г':'g','ҳ':'h',
+ 'и':'i','ж':'j','к':'k','л':'l','м':'m','н':'n','о':'o',
+ 'п':'p','қ':'q','р':'r','с':'s','т':'t','у':'u','в':'v',
+ 'х':'x','й':'y','з':'z','ш':'sh','ч':'ch','я':'ya','ю':'yu',
+ 'ё':'yo','ғ':'g‘','ў':'o‘'
+ };
+ let output='';
+ for(let c of text){
+  let lower=c.toLowerCase();
+  let converted=map[lower]||c;
+  if(c!==lower)converted=converted.charAt(0).toUpperCase()+converted.slice(1);
+  output+=converted;
+ }
+ document.getElementById('uzResult').textContent=output;
 }
 
 function formatPhone(){
-let value=document.getElementById('phoneInput').value.replace(/\D/g,'');
-if(value.length===9)value='998'+value;
-if(value.length!==12||!value.startsWith('998')){
-document.getElementById('phoneResult').textContent='Enter a valid Uzbek phone number';
-return;
-}
-document.getElementById('phoneResult').textContent=
-'+998 '+value.slice(3,5)+' '+value.slice(5,8)+' '+value.slice(8,10)+' '+value.slice(10,12);
+ let value=document.getElementById('phoneInput').value.replace(/\D/g,'');
+ if(value.length===9)value='998'+value;
+ if(value.length!==12||!value.startsWith('998')){
+  document.getElementById('phoneResult').textContent='Enter a valid Uzbek phone number';
+  return;
+ }
+ document.getElementById('phoneResult').textContent=
+ '+998 '+value.slice(3,5)+' '+value.slice(5,8)+' '+value.slice(8,10)+' '+value.slice(10,12);
 }
 
 function searchTools(){
-let query=document.getElementById('search').value.toLowerCase();
-document.querySelectorAll('.card').forEach(card=>{
-card.style.display=card.dataset.name.toLowerCase().includes(query)?'block':'none';
-});
+ let query=document.getElementById('search').value.toLowerCase().trim();
+ let cards=document.querySelectorAll('.card');
+ let visible=0;
+ cards.forEach(card=>{
+  let matches=card.dataset.name.toLowerCase().includes(query);
+  card.style.display=matches?'':'none';
+  if(matches)visible++;
+ });
+ document.getElementById('toolCount').textContent=visible+' tools';
+ document.getElementById('empty').style.display=visible?'none':'block';
 }
 </script>
+
 </body>
 </html>
