@@ -4,264 +4,270 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080c14">
-<meta name="description" content="Free online tools for developers and everyone.">
+<meta name="description" content="UzDevTools — free, privacy-friendly online tools for developers, creators and everyone.">
 <title>UzDevTools — Free Online Tools</title>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#080c14;
-  --panel:#101725;
-  --panel2:#151e2e;
-  --border:#263247;
-  --text:#f1f5f9;
-  --muted:#94a3b8;
-  --blue:#60a5fa;
-  --cyan:#22d3ee;
+ --bg:#080d17;
+ --card:#111b2b;
+ --card2:#0b1220;
+ --border:#263650;
+ --text:#f1f5f9;
+ --muted:#94a3b8;
+ --blue:#60a5fa;
+ --cyan:#22d3ee;
+ --purple:#a78bfa;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
 body{
- margin:0;
- font-family:Inter,Segoe UI,Arial,sans-serif;
- background:
- radial-gradient(ellipse at 50% -20%,#16345c 0%,transparent 45%),
- var(--bg);
+ background:radial-gradient(ellipse at top,#102039 0%,#080d17 48%);
  color:var(--text);
- min-height:100vh
+ font-family:Inter,Segoe UI,Arial,sans-serif;
+ min-height:100vh;
 }
 button,input,textarea{font:inherit}
+button{cursor:pointer}
 header{
- max-width:1250px;
+ max-width:1150px;
  margin:auto;
- padding:24px;
+ padding:24px 20px;
  display:flex;
+ justify-content:space-between;
  align-items:center;
- justify-content:space-between
 }
 .logo{
- font-size:25px;
+ font-size:24px;
  font-weight:800;
- letter-spacing:-1px
+ letter-spacing:-1px;
 }
 .logo span{color:var(--cyan)}
-.nav{
- display:flex;
- align-items:center;
- gap:20px
-}
-.nav a{
+nav{display:flex;gap:25px;align-items:center}
+nav a{
  color:var(--muted);
  text-decoration:none;
- transition:.2s
+ font-size:14px;
 }
-.nav a:hover{color:white}
+nav a:hover{color:white}
 .github{
- padding:10px 16px;
  border:1px solid var(--border);
- border-radius:10px;
- background:#111827
+ border-radius:12px;
+ padding:11px 17px;
 }
 .hero{
- padding:90px 20px 55px;
- text-align:center
+ max-width:900px;
+ margin:85px auto 80px;
+ text-align:center;
+ padding:0 20px;
 }
-.pill{
+.badge{
  display:inline-flex;
- gap:8px;
  align-items:center;
- padding:8px 14px;
- border:1px solid #284363;
- border-radius:50px;
- background:#102238;
- color:#93c5fd;
- font-size:13px
+ gap:8px;
+ border:1px solid var(--border);
+ background:#101a29;
+ border-radius:30px;
+ padding:9px 15px;
+ color:#bfdbfe;
+ font-size:12px;
+ margin-bottom:25px;
 }
-.dot{
- width:7px;height:7px;
- background:#34d399;
- border-radius:50%
-}
+.dot{color:#34d399}
 .hero h1{
- font-size:clamp(40px,7vw,75px);
+ font-size:clamp(42px,7vw,72px);
  line-height:1.08;
  letter-spacing:-3px;
- margin:24px 0
+ font-weight:850;
 }
 .gradient{
  background:linear-gradient(90deg,#60a5fa,#22d3ee,#a78bfa);
  -webkit-background-clip:text;
  background-clip:text;
- color:transparent
+ color:transparent;
 }
 .hero p{
  color:var(--muted);
- font-size:18px;
- max-width:600px;
- margin:0 auto;
- line-height:1.7
+ margin:22px auto 32px;
+ font-size:17px;
+ line-height:1.7;
 }
-.searchwrap{
- max-width:650px;
- margin:35px auto 0;
- position:relative
+.searchbox{
+ max-width:610px;
+ margin:auto;
 }
-.searchwrap input{
+.searchbox input{
  width:100%;
- padding:18px 20px 18px 48px;
- background:rgba(16,23,37,.9);
+ background:#080d17;
  border:1px solid var(--border);
- border-radius:15px;
+ border-radius:14px;
+ padding:17px 20px;
  color:white;
  outline:none;
- font-size:16px;
- transition:.2s
 }
-.searchwrap input:focus{
+.searchbox input:focus{
  border-color:#60a5fa;
- box-shadow:0 0 0 4px rgba(96,165,250,.12)
+ box-shadow:0 0 0 3px #60a5fa22;
 }
-.searchicon{
- position:absolute;
- left:18px;
- top:17px;
- color:#64748b
-}
-.content{
- max-width:1250px;
+main{
+ max-width:1150px;
  margin:auto;
- padding:15px 24px 80px
+ padding:0 20px 70px;
 }
 .sectiontop{
  display:flex;
  justify-content:space-between;
  align-items:center;
- margin:25px 0
+ margin-bottom:20px;
 }
-.sectiontop h2{
- font-size:23px;
- margin:0
+.sectiontop h2{font-size:22px}
+#toolCount{color:var(--muted);font-size:13px}
+.categories{
+ display:flex;
+ flex-wrap:wrap;
+ gap:10px;
+ margin-bottom:25px;
 }
-.sectiontop span{
+.category{
+ background:#101725;
+ border:1px solid var(--border);
  color:var(--muted);
- font-size:14px
+ border-radius:10px;
+ padding:10px 16px;
+ transition:.2s;
+}
+.category:hover{border-color:var(--blue);color:white}
+.category.active{
+ background:linear-gradient(135deg,#60a5fa,#38bdf8);
+ color:#07111d;
+ border-color:transparent;
+ font-weight:700;
 }
 .grid{
  display:grid;
  grid-template-columns:repeat(3,minmax(0,1fr));
- gap:20px
+ gap:18px;
 }
 .card{
- background:linear-gradient(160deg,#131d2c,#0e1522);
+ background:linear-gradient(145deg,#121d2d,#0e1726);
  border:1px solid var(--border);
- border-radius:18px;
+ border-radius:20px;
  padding:24px;
- transition:transform .25s,border .25s,box-shadow .25s;
- min-width:0
+ transition:transform .2s,border-color .2s,box-shadow .2s;
+ min-width:0;
 }
 .card:hover{
- transform:translateY(-5px);
- border-color:#40577a;
- box-shadow:0 12px 35px rgba(0,0,0,.25)
+ transform:translateY(-4px);
+ border-color:#42658e;
+ box-shadow:0 12px 30px #0003;
 }
 .iconbox{
- width:46px;height:46px;
- display:grid;
- place-items:center;
+ width:44px;height:44px;
+ display:grid;place-items:center;
+ background:#1b2b43;
  border-radius:13px;
- background:#1b2c43;
- font-size:23px;
- margin-bottom:18px
+ font-size:22px;
+ margin-bottom:18px;
 }
-.card h3{
- margin:0 0 9px;
- font-size:18px
-}
+.card h3{font-size:18px;margin-bottom:10px}
 .card p{
- margin:0 0 20px;
  color:var(--muted);
- font-size:14px;
- line-height:1.6
+ font-size:13px;
+ line-height:1.6;
+ margin-bottom:18px;
+ min-height:22px;
 }
-textarea,input[type=text],input[type=number]{
+input,textarea{
  width:100%;
+ background:#080d17;
+ border:1px solid var(--border);
+ color:white;
  padding:13px;
- background:#080e19;
- color:var(--text);
- border:1px solid #29364b;
- border-radius:11px;
+ border-radius:12px;
  outline:none;
- margin:0 0 10px
+ margin-bottom:12px;
 }
-textarea{
- min-height:120px;
- resize:vertical
-}
-textarea:focus,input:focus{
- border-color:#60a5fa
-}
-button{
- border:none;
- border-radius:10px;
- padding:11px 16px;
- background:linear-gradient(135deg,#60a5fa,#38bdf8);
+input:focus,textarea:focus{border-color:var(--blue)}
+textarea{resize:vertical;min-height:100px}
+.card button,.action{
+ background:linear-gradient(135deg,#38bdf8,#22d3ee);
  color:#07111d;
  font-weight:700;
- cursor:pointer;
- transition:.2s
+ border:0;
+ padding:12px 16px;
+ border-radius:11px;
+ transition:.2s;
 }
-button:hover{
- filter:brightness(1.1);
- transform:translateY(-1px)
-}
-button.secondary{
- background:#1b2638;
- color:#dbeafe;
- border:1px solid #31415a
+.card button:hover,.action:hover{filter:brightness(1.1)}
+.secondary{
+ background:#1b2b43!important;
+ color:white!important;
+ border:1px solid var(--border)!important;
 }
 .result{
- margin-top:12px;
- color:#67e8f9;
+ color:#38bdf8;
+ margin-top:15px;
  font-size:14px;
  line-height:1.6;
+ overflow-wrap:anywhere;
+}
+.result pre{
  white-space:pre-wrap;
- overflow-wrap:anywhere
+ word-break:break-word;
+ color:#cbd5e1;
+ background:#080d17;
+ padding:12px;
+ border-radius:10px;
+ overflow:auto;
 }
-.actions{
+.result img{max-width:100%}
+.qr-result{
  display:flex;
- flex-wrap:wrap;
- gap:8px
+ flex-direction:column;
+ align-items:center;
+ gap:12px;
 }
+.qr-result canvas,.qr-result img{
+ background:white;
+ padding:10px;
+ border-radius:10px;
+ max-width:100%;
+}
+.row-buttons{display:flex;gap:10px;flex-wrap:wrap}
+.row-buttons button{flex:1}
 .empty{
  display:none;
  text-align:center;
  padding:40px;
- color:var(--muted)
+ color:var(--muted);
 }
 footer{
- border-top:1px solid #1e293b;
- text-align:center;
+ border-top:1px solid #1d293a;
  padding:30px 20px;
- color:#64748b;
- font-size:14px
+ text-align:center;
+ color:var(--muted);
+ font-size:13px;
 }
-footer a{color:#93c5fd;text-decoration:none}
-@media(max-width:950px){
+footer a{color:#60a5fa;text-decoration:none}
+@media(max-width:850px){
  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
- .hero{padding-top:60px}
+ .hero{margin-top:60px}
 }
 @media(max-width:600px){
- header{padding:18px}
- .nav{gap:10px}
- .nav a:not(.github){display:none}
- .logo{font-size:21px}
- .hero{padding:65px 18px 35px}
- .hero h1{letter-spacing:-2px}
- .hero p{font-size:16px}
- .content{padding:10px 16px 50px}
+ header{padding:18px 16px}
+ nav{gap:12px}
+ nav a{font-size:12px}
+ .logo{font-size:20px}
+ .hero{margin:50px auto 55px}
+ .hero h1{letter-spacing:-1.5px}
+ .hero p{font-size:15px}
+ main{padding:0 15px 50px}
  .grid{grid-template-columns:1fr}
- .card{padding:20px}
- .sectiontop{align-items:flex-start;gap:10px}
+ .sectiontop h2{font-size:19px}
+ .card{padding:21px}
+ .categories{gap:8px}
+ .category{padding:9px 12px;font-size:13px}
 }
 </style>
 </head>
@@ -270,7 +276,7 @@ footer a{color:#93c5fd;text-decoration:none}
 
 <header>
  <div class="logo">Uz<span>Dev</span>Tools</div>
- <nav class="nav">
+ <nav>
   <a href="#tools">Tools</a>
   <a href="#about">About</a>
   <a class="github" href="https://github.com/Shakh-Alijonov/uzdevtools" target="_blank">GitHub ↗</a>
@@ -278,228 +284,431 @@ footer a{color:#93c5fd;text-decoration:none}
 </header>
 
 <section class="hero">
- <div class="pill"><span class="dot"></span> FREE & OPEN SOURCE</div>
+ <div class="badge"><span class="dot">●</span> FREE & OPEN SOURCE</div>
  <h1>Tools that make<br><span class="gradient">life easier.</span></h1>
  <p>Simple, useful and free online tools for developers, creators and everyone.</p>
- <div class="searchwrap">
-  <span class="searchicon">⌕</span>
+ <div class="searchbox">
   <input id="search" type="text" placeholder="Search for a tool..." oninput="searchTools()">
  </div>
 </section>
 
-<main class="content" id="tools">
+<main id="tools">
+
  <div class="sectiontop">
   <h2>Explore tools</h2>
-  <span id="toolCount">6 tools</span>
+  <span id="toolCount">7 tools</span>
  </div>
 
- <div class="grid" id="grid">
-
- <div class="card" data-name="text counter words characters text">
-  <div class="iconbox">📝</div>
-  <h3>Text Counter</h3>
-  <p>Count words, characters and spaces instantly.</p>
-  <textarea id="textInput" placeholder="Type or paste your text..." oninput="countText()"></textarea>
-  <div class="result" id="textResult">Words: 0 · Characters: 0</div>
+ <div class="categories">
+  <button class="category active" onclick="filterCategory('all',this)">All Tools</button>
+  <button class="category" onclick="filterCategory('text',this)">Text</button>
+  <button class="category" onclick="filterCategory('developer',this)">Developer</button>
+  <button class="category" onclick="filterCategory('calculator',this)">Calculators</button>
+  <button class="category" onclick="filterCategory('utility',this)">Utilities</button>
  </div>
 
- <div class="card" data-name="json formatter validator developer">
-  <div class="iconbox">⌨️</div>
-  <h3>JSON Formatter</h3>
-  <p>Format and validate JSON data.</p>
-  <textarea id="jsonInput" placeholder='{"name":"UzDevTools"}'></textarea>
-  <div class="actions">
-   <button onclick="formatJSON()">Format JSON</button>
-   <button class="secondary" onclick="copyJSON()">Copy</button>
+ <div class="grid" id="toolGrid">
+
+  <!-- TEXT COUNTER -->
+  <div class="card" data-category="text" data-name="text counter words characters spaces">
+   <div class="iconbox">📝</div>
+   <h3>Text Counter</h3>
+   <p>Count words, characters and spaces instantly.</p>
+   <textarea id="textInput" placeholder="Type or paste your text..." oninput="countText()"></textarea>
+   <div class="result" id="textResult">Words: 0 | Characters: 0 | Characters without spaces: 0</div>
   </div>
-  <div class="result" id="jsonResult"></div>
- </div>
 
- <div class="card" data-name="password generator security random">
-  <div class="iconbox">🔐</div>
-  <h3>Password Generator</h3>
-  <p>Create strong random passwords.</p>
-  <input type="number" id="passLength" min="8" max="128" value="16">
-  <div class="actions">
-   <button onclick="generatePassword()">Generate</button>
-   <button class="secondary" onclick="copyPassword()">Copy</button>
+  <!-- JSON FORMATTER -->
+  <div class="card" data-category="developer" data-name="json formatter validator developer">
+   <div class="iconbox">⌨️</div>
+   <h3>JSON Formatter</h3>
+   <p>Format and validate JSON data.</p>
+   <textarea id="jsonInput" placeholder='{"name":"UzDevTools"}'></textarea>
+   <div class="row-buttons">
+    <button onclick="formatJSON()">Format JSON</button>
+    <button class="secondary" onclick="copyJSON()">Copy</button>
+   </div>
+   <div class="result" id="jsonResult"></div>
   </div>
-  <div class="result" id="passResult"></div>
- </div>
 
- <div class="card" data-name="vat tax calculator uzbekistan">
-  <div class="iconbox">🧮</div>
-  <h3>VAT Calculator</h3>
-  <p>Calculate VAT using a 12% rate.</p>
-  <input type="number" id="vatAmount" placeholder="Enter amount">
-  <button onclick="calculateVAT()">Calculate</button>
-  <div class="result" id="vatResult"></div>
- </div>
-
- <div class="card" data-name="uzbek latin cyrillic converter alphabet">
-  <div class="iconbox">🔤</div>
-  <h3>Uzbek Converter</h3>
-  <p>Convert Uzbek Latin and Cyrillic text.</p>
-  <textarea id="uzInput" placeholder="Enter Uzbek text..."></textarea>
-  <div class="actions">
-   <button onclick="toCyrillic()">Latin → Cyrillic</button>
-   <button class="secondary" onclick="toLatin()">Cyrillic → Latin</button>
+  <!-- PASSWORD GENERATOR -->
+  <div class="card" data-category="developer" data-name="password generator security random">
+   <div class="iconbox">🔐</div>
+   <h3>Password Generator</h3>
+   <p>Create strong random passwords.</p>
+   <input id="passwordLength" type="number" min="4" max="128" value="16" placeholder="Password length">
+   <div class="row-buttons">
+    <button onclick="generatePassword()">Generate</button>
+    <button class="secondary" onclick="copyPassword()">Copy</button>
+   </div>
+   <div class="result" id="passwordResult"></div>
   </div>
-  <div class="result" id="uzResult"></div>
+
+  <!-- VAT CALCULATOR -->
+  <div class="card" data-category="calculator" data-name="vat tax calculator uzbekistan">
+   <div class="iconbox">🧮</div>
+   <h3>VAT Calculator</h3>
+   <p>Calculate VAT at 12%.</p>
+   <input id="vatAmount" type="number" placeholder="Enter amount">
+   <button onclick="calculateVAT()">Calculate</button>
+   <div class="result" id="vatResult"></div>
+  </div>
+
+  <!-- UZBEK CONVERTER -->
+  <div class="card" data-category="text" data-name="uzbek latin cyrillic converter alphabet">
+   <div class="iconbox">🔤</div>
+   <h3>Uzbek Converter</h3>
+   <p>Convert Uzbek Latin to Cyrillic and back.</p>
+   <textarea id="uzbekInput" placeholder="Enter Uzbek text..."></textarea>
+   <div class="row-buttons">
+    <button onclick="latinToCyrillic()">Latin → Cyrillic</button>
+    <button onclick="cyrillicToLatin()">Cyrillic → Latin</button>
+   </div>
+   <div class="result" id="uzbekResult"></div>
+   <button class="secondary" onclick="copyUzbek()" style="margin-top:10px">Copy result</button>
+  </div>
+
+  <!-- PHONE FORMATTER -->
+  <div class="card" data-category="utility" data-name="phone formatter uzbekistan mobile">
+   <div class="iconbox">📱</div>
+   <h3>Phone Formatter</h3>
+   <p>Format Uzbek phone numbers.</p>
+   <input id="phoneInput" type="text" placeholder="998901234567">
+   <button onclick="formatPhone()">Format</button>
+   <div class="result" id="phoneResult"></div>
+   <button class="secondary" onclick="copyPhone()" style="margin-top:10px">Copy</button>
+  </div>
+
+  <!-- QR GENERATOR -->
+  <div class="card" data-category="utility" data-name="qr code generator barcode link wifi text">
+   <div class="iconbox">🔳</div>
+   <h3>QR Code Generator</h3>
+   <p>Create QR codes for links, text and more.</p>
+   <input id="qrInput" type="text" placeholder="Enter text or URL...">
+   <button onclick="generateQR()">Generate QR</button>
+   <div class="result qr-result" id="qrResult"></div>
+  </div>
+
  </div>
 
- <div class="card" data-name="phone formatter uzbekistan mobile">
-  <div class="iconbox">📱</div>
-  <h3>Phone Formatter</h3>
-  <p>Format Uzbek phone numbers.</p>
-  <input type="text" id="phoneInput" placeholder="998901234567">
-  <button onclick="formatPhone()">Format number</button>
-  <div class="result" id="phoneResult"></div>
- </div>
+ <div class="empty" id="empty">No tools found. Try another search.</div>
 
- </div>
- <div class="empty" id="empty">No tools found.</div>
 </main>
 
 <footer id="about">
- <div class="logo">Uz<span>Dev</span>Tools</div>
- <p>Free tools. Open source. Made for everyone.</p>
- <p><a href="https://github.com/Shakh-Alijonov/uzdevtools">Contribute on GitHub ↗</a></p>
- <p>© 2026 UzDevTools</p>
+ <p>UzDevTools — Free online tools for everyone.</p>
+ <p style="margin-top:10px">Open source · Privacy-friendly · Made with ❤️</p>
+ <p style="margin-top:10px"><a href="https://github.com/Shakh-Alijonov/uzdevtools" target="_blank">View on GitHub</a></p>
 </footer>
 
 <script>
-function countText(){
- let t=document.getElementById('textInput').value;
- let words=t.trim()?t.trim().split(/\s+/).length:0;
- document.getElementById('textResult').textContent=
- 'Words: '+words+' · Characters: '+t.length;
-}
 
-function formatJSON(){
- let input=document.getElementById('jsonInput').value;
- try{
-  document.getElementById('jsonInput').value=JSON.stringify(JSON.parse(input),null,2);
-  document.getElementById('jsonResult').textContent='Valid JSON ✓';
- }catch(e){
-  document.getElementById('jsonResult').textContent='Invalid JSON ✗';
- }
-}
+/* SEARCH AND CATEGORIES */
 
-function copyJSON(){
- navigator.clipboard.writeText(document.getElementById('jsonInput').value);
- document.getElementById('jsonResult').textContent='Copied!';
-}
+let currentCategory='all';
 
-function generatePassword(){
- let length=parseInt(document.getElementById('passLength').value);
- if(!length||length<8||length>128){
-  document.getElementById('passResult').textContent='Choose 8–128 characters';
-  return;
- }
- let chars='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=';
- let arr=new Uint32Array(length);
- crypto.getRandomValues(arr);
- let password='';
- for(let i=0;i<length;i++)password+=chars[arr[i]%chars.length];
- document.getElementById('passResult').textContent=password;
-}
-
-function copyPassword(){
- let p=document.getElementById('passResult').textContent;
- if(p)navigator.clipboard.writeText(p);
-}
-
-function calculateVAT(){
- let amount=parseFloat(document.getElementById('vatAmount').value);
- if(isNaN(amount)||amount<0){
-  document.getElementById('vatResult').textContent='Enter a valid amount';
-  return;
- }
- let vat=amount*0.12;
- document.getElementById('vatResult').textContent=
- 'VAT: '+vat.toFixed(2)+' · Total: '+(amount+vat).toFixed(2);
-}
-
-/* Uzbek Latin to Cyrillic */
-function toCyrillic(){
- let text=document.getElementById('uzInput').value;
- let result='';
- let pairs=[
-  ["O‘","Ў"],["O'","Ў"],["o‘","ў"],["o'","ў"],
-  ["G‘","Ғ"],["G'","Ғ"],["g‘","ғ"],["g'","ғ"],
-  ["Sh","Ш"],["sh","ш"],["CH","Ч"],["Ch","Ч"],["ch","ч"],
-  ["Ya","Я"],["ya","я"],["Yu","Ю"],["yu","ю"],
-  ["Yo","Ё"],["yo","ё"],
-  ["A","А"],["a","а"],["B","Б"],["b","б"],
-  ["D","Д"],["d","д"],["E","Е"],["e","е"],
-  ["F","Ф"],["f","ф"],["G","Г"],["g","г"],
-  ["H","Ҳ"],["h","ҳ"],["I","И"],["i","и"],
-  ["J","Ж"],["j","ж"],["K","К"],["k","к"],
-  ["L","Л"],["l","л"],["M","М"],["m","м"],
-  ["N","Н"],["n","н"],["O","О"],["o","о"],
-  ["P","П"],["p","п"],["Q","Қ"],["q","қ"],
-  ["R","Р"],["r","р"],["S","С"],["s","с"],
-  ["T","Т"],["t","т"],["U","У"],["u","у"],
-  ["V","В"],["v","в"],["X","Х"],["x","х"],
-  ["Y","Й"],["y","й"],["Z","З"],["z","з"]
- ];
- for(let i=0;i<text.length;){
-  let found=false;
-  for(let pair of pairs){
-   if(text.slice(i,i+pair[0].length)===pair[0]){
-    result+=pair[1];i+=pair[0].length;found=true;break;
-   }
-  }
-  if(!found){result+=text[i];i++;}
- }
- document.getElementById('uzResult').textContent=result;
-}
-
-/* Uzbek Cyrillic to Latin */
-function toLatin(){
- let text=document.getElementById('uzInput').value;
- let map={
- 'а':'a','б':'b','д':'d','е':'e','ф':'f','г':'g','ҳ':'h',
- 'и':'i','ж':'j','к':'k','л':'l','м':'m','н':'n','о':'o',
- 'п':'p','қ':'q','р':'r','с':'s','т':'t','у':'u','в':'v',
- 'х':'x','й':'y','з':'z','ш':'sh','ч':'ch','я':'ya','ю':'yu',
- 'ё':'yo','ғ':'g‘','ў':'o‘'
- };
- let output='';
- for(let c of text){
-  let lower=c.toLowerCase();
-  let converted=map[lower]||c;
-  if(c!==lower)converted=converted.charAt(0).toUpperCase()+converted.slice(1);
-  output+=converted;
- }
- document.getElementById('uzResult').textContent=output;
-}
-
-function formatPhone(){
- let value=document.getElementById('phoneInput').value.replace(/\D/g,'');
- if(value.length===9)value='998'+value;
- if(value.length!==12||!value.startsWith('998')){
-  document.getElementById('phoneResult').textContent='Enter a valid Uzbek phone number';
-  return;
- }
- document.getElementById('phoneResult').textContent=
- '+998 '+value.slice(3,5)+' '+value.slice(5,8)+' '+value.slice(8,10)+' '+value.slice(10,12);
+function filterCategory(category,button){
+ currentCategory=category;
+ document.querySelectorAll('.category').forEach(btn=>btn.classList.remove('active'));
+ button.classList.add('active');
+ searchTools();
 }
 
 function searchTools(){
  let query=document.getElementById('search').value.toLowerCase().trim();
  let cards=document.querySelectorAll('.card');
  let visible=0;
+
  cards.forEach(card=>{
-  let matches=card.dataset.name.toLowerCase().includes(query);
-  card.style.display=matches?'':'none';
-  if(matches)visible++;
+  let name=card.dataset.name.toLowerCase();
+  let category=card.dataset.category;
+  let matchesSearch=name.includes(query);
+  let matchesCategory=currentCategory==='all'||category===currentCategory;
+  let show=matchesSearch&&matchesCategory;
+  card.style.display=show?'':'none';
+  if(show)visible++;
  });
+
  document.getElementById('toolCount').textContent=visible+' tools';
  document.getElementById('empty').style.display=visible?'none':'block';
 }
-</script>
 
+/* TEXT COUNTER */
+
+function countText(){
+ let text=document.getElementById('textInput').value;
+ let words=text.trim()?text.trim().split(/\s+/).length:0;
+ let chars=text.length;
+ let noSpaces=text.replace(/\s/g,'').length;
+ document.getElementById('textResult').textContent=
+ 'Words: '+words+' | Characters: '+chars+' | Characters without spaces: '+noSpaces;
+}
+
+/* JSON FORMATTER */
+
+function formatJSON(){
+ let input=document.getElementById('jsonInput').value;
+ let result=document.getElementById('jsonResult');
+
+ try{
+  let parsed=JSON.parse(input);
+  document.getElementById('jsonInput').value=JSON.stringify(parsed,null,2);
+  result.textContent='Valid JSON ✓';
+  result.style.color='#34d399';
+ }catch(e){
+  result.textContent='Invalid JSON: '+e.message;
+  result.style.color='#f87171';
+ }
+}
+
+function copyJSON(){
+ copyText(document.getElementById('jsonInput').value);
+}
+
+/* PASSWORD GENERATOR */
+
+function generatePassword(){
+ let length=parseInt(document.getElementById('passwordLength').value);
+ if(isNaN(length)||length<4||length>128){
+  document.getElementById('passwordResult').textContent='Choose a length from 4 to 128.';
+  return;
+ }
+
+ let chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=';
+ let password='';
+ let randomValues=new Uint32Array(length);
+ crypto.getRandomValues(randomValues);
+
+ for(let i=0;i<length;i++){
+  password+=chars[randomValues[i]%chars.length];
+ }
+ document.getElementById('passwordResult').textContent=password;
+}
+
+function copyPassword(){
+ copyText(document.getElementById('passwordResult').textContent);
+}
+
+/* VAT CALCULATOR */
+
+function calculateVAT(){
+ let amount=parseFloat(document.getElementById('vatAmount').value);
+ if(isNaN(amount)||amount<0){
+  document.getElementById('vatResult').textContent='Enter a valid amount.';
+  return;
+ }
+ let vat=amount*0.12;
+ let total=amount+vat;
+ document.getElementById('vatResult').textContent=
+ 'VAT: '+vat.toFixed(2)+' | Total: '+total.toFixed(2);
+}
+
+/* PHONE FORMATTER */
+
+function formatPhone(){
+ let raw=document.getElementById('phoneInput').value.replace(/\D/g,'');
+ if(raw.startsWith('998'))raw=raw.slice(3);
+ if(raw.startsWith('0'))raw=raw.slice(1);
+
+ if(raw.length!==9){
+  document.getElementById('phoneResult').textContent='Enter a valid Uzbek phone number.';
+  return;
+ }
+
+ document.getElementById('phoneResult').textContent=
+ '+998 ('+raw.slice(0,2)+') '+raw.slice(2,5)+'-'+raw.slice(5,7)+'-'+raw.slice(7,9);
+}
+
+function copyPhone(){
+ copyText(document.getElementById('phoneResult').textContent);
+}
+
+/* UZBEK LATIN TO CYRILLIC */
+
+function latinToCyrillic(){
+ let text=document.getElementById('uzbekInput').value;
+ let result=text;
+
+ const replacements=[
+  [/Oʻ|O'|О‘|O’|oʻ|o'|о‘|o’/g,'ў'],
+  [/Gʻ|G'|Ғ‘|G’|gʻ|g'|ғ‘|g’/g,'ғ'],
+  [/sh/gi,'ш'],
+  [/ch/gi,'ч'],
+  [/yo/gi,'ё'],
+  [/yu/gi,'ю'],
+  [/ya/gi,'я'],
+  [/ts/gi,'ц'],
+  [/a/gi,'а'],
+  [/b/gi,'б'],
+  [/d/gi,'д'],
+  [/e/gi,'е'],
+  [/f/gi,'ф'],
+  [/g/gi,'г'],
+  [/h/gi,'ҳ'],
+  [/i/gi,'и'],
+  [/j/gi,'ж'],
+  [/k/gi,'к'],
+  [/l/gi,'л'],
+  [/m/gi,'м'],
+  [/n/gi,'н'],
+  [/o/gi,'о'],
+  [/p/gi,'п'],
+  [/q/gi,'қ'],
+  [/r/gi,'р'],
+  [/s/gi,'с'],
+  [/t/gi,'т'],
+  [/u/gi,'у'],
+  [/v/gi,'в'],
+  [/x/gi,'х'],
+  [/y/gi,'й'],
+  [/z/gi,'з']
+ ];
+
+ replacements.forEach(([pattern,replacement])=>{
+  result=result.replace(pattern,replacement);
+ });
+
+ result=result.replace(/ў/g,'ў').replace(/ғ/g,'ғ');
+
+ result=result.replace(/([а-яёғқҳў])/g,(letter)=>{
+  return letter;
+ });
+
+ result=result.replace(/([А-ЯЁҒҚҲЎ])/g,(letter)=>{
+  return letter.toLowerCase();
+ });
+
+ result=result.replace(/ъ/g,'ъ').replace(/ь/g,'ь');
+
+ document.getElementById('uzbekResult').textContent=result;
+}
+
+/* UZBEK CYRILLIC TO LATIN */
+
+function cyrillicToLatin(){
+ let text=document.getElementById('uzbekInput').value;
+ let result=text;
+
+ const replacements=[
+  [/Ш/gi,'sh'],
+  [/Ч/gi,'ch'],
+  [/Ё/gi,'yo'],
+  [/Ю/gi,'yu'],
+  [/Я/gi,'ya'],
+  [/Ц/gi,'ts'],
+  [/А/gi,'a'],
+  [/Б/gi,'b'],
+  [/В/gi,'v'],
+  [/Д/gi,'d'],
+  [/Е/gi,'e'],
+  [/Ф/gi,'f'],
+  [/Г/gi,'g'],
+  [/Ҳ/gi,'h'],
+  [/И/gi,'i'],
+  [/Ж/gi,'j'],
+  [/К/gi,'k'],
+  [/Л/gi,'l'],
+  [/М/gi,'m'],
+  [/Н/gi,'n'],
+  [/О/gi,'o'],
+  [/П/gi,'p'],
+  [/Қ/gi,'q'],
+  [/Р/gi,'r'],
+  [/С/gi,'s'],
+  [/Т/gi,'t'],
+  [/У/gi,'u'],
+  [/Ў/gi,"o'"],
+  [/Ғ/gi,"g'"],
+  [/Х/gi,'x'],
+  [/Й/gi,'y'],
+  [/З/gi,'z'],
+  [/Ъ/gi,"'"],
+  [/Ь/gi,'']
+ ];
+
+ replacements.forEach(([pattern,replacement])=>{
+  result=result.replace(pattern,(match)=>{
+   let rep=replacement;
+   if(match===match.toUpperCase()&&match!==match.toLowerCase()){
+    rep=rep.charAt(0).toUpperCase()+rep.slice(1);
+   }
+   return rep;
+  });
+ });
+
+ document.getElementById('uzbekResult').textContent=result;
+}
+
+function copyUzbek(){
+ copyText(document.getElementById('uzbekResult').textContent);
+}
+
+/* QR GENERATOR */
+
+function generateQR(){
+ let text=document.getElementById('qrInput').value.trim();
+ let result=document.getElementById('qrResult');
+
+ if(!text){
+  result.textContent='Please enter text or a link.';
+  return;
+ }
+
+ if(typeof QRCode==='undefined'){
+  result.textContent='QR library failed to load. Refresh the page and try again.';
+  return;
+ }
+
+ result.innerHTML='';
+ let qrBox=document.createElement('div');
+ qrBox.style.background='#ffffff';
+ qrBox.style.padding='12px';
+ qrBox.style.display='inline-block';
+ qrBox.style.borderRadius='12px';
+ result.appendChild(qrBox);
+
+ new QRCode(qrBox,{
+  text:text,
+  width:220,
+  height:220,
+  colorDark:'#000000',
+  colorLight:'#ffffff',
+  correctLevel:QRCode.CorrectLevel.H
+ });
+
+ setTimeout(()=>{
+  let canvas=qrBox.querySelector('canvas');
+  let img=qrBox.querySelector('img');
+  let source=canvas?canvas.toDataURL('image/png'):(img?img.src:null);
+
+  if(source){
+   let download=document.createElement('a');
+   download.href=source;
+   download.download='uzdevtools-qr.png';
+   download.textContent='Download QR PNG';
+   download.className='action';
+   download.style.display='inline-block';
+   download.style.marginTop='10px';
+   result.appendChild(download);
+  }
+ },300);
+}
+
+/* UNIVERSAL COPY */
+
+function copyText(text){
+ if(!text||text==='undefined'){
+  alert('Nothing to copy.');
+  return;
+ }
+
+ navigator.clipboard.writeText(text).then(()=>{
+  alert('Copied!');
+ }).catch(()=>{
+  alert('Copy failed. Please copy manually.');
+ });
+}
+
+</script>
 </body>
 </html>
